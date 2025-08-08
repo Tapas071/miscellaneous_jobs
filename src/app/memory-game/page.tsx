@@ -80,9 +80,9 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-gray-100 p-6">
-      <div className="max-w-6xl mx-auto text-center">
-        <h1 className="text-4xl md:text-5xl font-extrabold text-teal-400 mb-6">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-gray-100 p-">
+      <div className="max-w-6xl mx-auto text-center ">
+        <h1 className="text-4xl md:text-5xl font-extrabold text-teal-400  mt-10">
           Memory Match
         </h1>
 
@@ -139,13 +139,13 @@ export default function Home() {
 
         <button
           onClick={handleReset}
-          className="flex items-center justify-center space-x-2 mb-8 px-6 py-2 bg-slate-800 text-gray-300 rounded-full shadow-lg hover:bg-slate-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-slate-500 mx-auto"
+          className="flex items-center justify-center space-x-2 m-3 px-6 py-2 bg-slate-800 text-gray-300 rounded-full shadow-lg hover:bg-slate-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-slate-500 mx-auto"
         >
           <span>🔄</span>
           <span>Reset Game</span>
         </button>
 
-        <div className="grid grid-cols-4 sm:grid-cols-6 gap-4 sm:gap-6">
+        <div className="grid grid-cols-4 sm:grid-cols-6 gap-4 sm:gap-6 pb-10">
           {cards.map((num, idx) => {
             const isFlipped = flipped.includes(idx) || matched.includes(idx);
             const isMatched = matched.includes(idx);
@@ -153,7 +153,7 @@ export default function Home() {
               <div
                 key={idx}
                 onClick={() => handleFlip(idx)}
-                className={`relative w-20 h-24 sm:w-28 sm:h-32 rounded-xl shadow-lg transition-all duration-300 cursor-pointer
+                className={`relative w-20 h-16 sm:w-28 sm:h-16 rounded-xl shadow-lg transition-all duration-300 cursor-pointer
                 ${!isFlipped ? "hover:scale-105 hover:shadow-2xl" : ""}
                 ${isMatched ? "opacity-50 pointer-events-none" : ""}
                 ${isFlipped ? "animate-pulse" : ""}`}
