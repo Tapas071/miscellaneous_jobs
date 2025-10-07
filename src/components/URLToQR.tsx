@@ -77,8 +77,8 @@ const URLToQR: React.FC = () => {
               fgColor="#00B2ED"
               imageSettings={{
                 src: "/logo.png",
-                height: 60,
-                width: 60,
+                height: 20,
+                width: 20,
                 excavate: true
               }}
               className="p-2 bg-gray-100 dark:bg-gray-700 rounded-lg"
