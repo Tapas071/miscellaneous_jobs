@@ -1,8 +1,8 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import dynamic from "next/dynamic";
 
-// Dynamically import the QRCodeCanvas component to avoid hydration errors
+// Dynamically import the QRCodeCanvas component
 const QRCodeCanvas = dynamic(
   () => import("qrcode.react").then((mod) => mod.QRCodeCanvas),
   { ssr: false }
@@ -11,10 +11,22 @@ const QRCodeCanvas = dynamic(
 const URLToQR: React.FC = () => {
   const [url, setUrl] = useState("");
   const [qrUrl, setQrUrl] = useState("");
+ const qrRef = useRef<HTMLDivElement | null>(null);
 
   const generateQRCode = () => {
     if (url.trim()) {
       setQrUrl(url);
+    }
+  };
+
+  const downloadQRCode = () => {
+    const canvas = qrRef.current?.querySelector('canvas');
+    if (canvas) {
+      const imgData = canvas.toDataURL("image/jpeg");
+      const a = document.createElement("a");
+      a.href = imgData;
+      a.download = "qr-code.jpg";
+      a.click();
     }
   };
 
@@ -41,12 +53,25 @@ const URLToQR: React.FC = () => {
         </button>
 
         {qrUrl && (
-          <div className="flex justify-center mt-6">
+          <div className="flex flex-col items-center mt-6" ref={qrRef}>
             <QRCodeCanvas
               value={qrUrl}
               size={200}
+              fgColor="#00B2ED"
+              imageSettings={{
+                src: "/logo.png",
+                height: 60,
+                width: 60,
+                excavate: true
+              }}
               className="p-2 bg-gray-100 dark:bg-gray-700 rounded-lg"
             />
+            <button
+              onClick={downloadQRCode}
+              className="mt-4 px-4 py-2 font-semibold text-white bg-green-500 rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
+            >
+              Download as JPG
+            </button>
           </div>
         )}
       </div>
