@@ -74,7 +74,7 @@ const URLToQR: React.FC = () => {
             <QRCodeCanvas
               value={qrUrl}
               size={200}
-              fgColor="#00B2ED"
+              fgColor="#0CA3F4"
               imageSettings={{
                 src: "/logo.png",
                 height: 20,
