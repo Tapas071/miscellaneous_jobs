@@ -1,25 +1,18 @@
 import Link from "next/link";
 
 export default function Home() {
-  if (typeof window !== "undefined")return <>
-  </>
-    return (
-      <div className="min-h-screen bg-gradient-to-b from-blue-100 to-blue-300 dark:from-gray-800 dark:to-gray-900 p-8 sm:p-20 text-gray-800 dark:text-gray-100">
-        <div className=" flex gap-4 p-4 m-4 ">
-          <Link href="/qr-gen" className="bg-red-500">
-            {" "}
-            click here to generate qr
-          </Link>
-
-          <Link href="/memory-game" className="bg-green-500">
-            {" "}
-            check your memory
-          </Link>
-        </div>
-
-        <footer className="flex items-center justify-center mt-16 text-sm">
-          Made with Love by ❤️ by Tapas Mondal
-        </footer>
-      </div>
-    );
+  return (
+    <main className="min-h-screen overflow-hidden bg-[#f7f8f5] text-slate-900">
+      <header className="page-width flex items-center justify-between py-6">
+        <Link href="/" className="text-sm font-extrabold tracking-[0.16em] text-teal-900">DAYMARK</Link>
+        <div className="flex items-center gap-3"><Link className="rounded-full px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-white" href="/sign-in">Sign in</Link><Link className="rounded-full bg-slate-950 px-5 py-2.5 text-sm font-semibold text-white hover:bg-teal-800" href="/sign-up">Get started</Link></div>
+      </header>
+      <section className="page-width grid min-h-[72vh] items-center gap-12 py-16 md:grid-cols-[1.05fr_0.95fr]">
+        <div><p className="eyebrow">A CALMER WAY TO MAKE PROGRESS</p><h1 className="mt-5 max-w-2xl text-5xl font-semibold leading-[1.08] tracking-tight sm:text-6xl">Build a life that feels <span className="text-teal-800">like yours.</span></h1><p className="mt-6 max-w-xl text-lg leading-8 text-slate-600">A thoughtful daily space for your routines, reflections, and small wins. Track what matters—without turning your life into a spreadsheet.</p><div className="mt-9 flex flex-wrap gap-3"><Link href="/sign-up" className="rounded-xl bg-slate-950 px-6 py-3.5 font-semibold text-white shadow-lg shadow-slate-900/10 transition hover:-translate-y-0.5 hover:bg-teal-800">Start your free journal <span aria-hidden="true">→</span></Link><Link href="/dashboard" className="rounded-xl border border-slate-200 bg-white px-6 py-3.5 font-semibold text-slate-700 hover:border-teal-700">Open dashboard</Link></div><p className="mt-5 text-sm text-slate-500">Private by design. Your check-ins belong to you.</p></div>
+        <div className="relative"><div className="absolute -inset-8 rounded-full bg-teal-100/70 blur-3xl" /><div className="relative rounded-[2rem] border border-white bg-white p-6 shadow-2xl shadow-teal-950/10 sm:p-8"><div className="flex items-center justify-between"><div><p className="eyebrow">YOUR DAY, IN BALANCE</p><p className="mt-2 text-2xl font-semibold">A good rhythm</p></div><span className="rounded-full bg-teal-50 px-3 py-1 text-sm font-medium text-teal-800">Today</span></div><div className="mt-8 space-y-4"><div className="rounded-2xl bg-[#f7f8f5] p-5"><div className="flex items-center justify-between"><span className="font-medium">Morning meditation</span><span className="text-sm text-slate-500">12 min</span></div><div className="mt-4 h-2 rounded-full bg-slate-200"><div className="h-2 w-3/4 rounded-full bg-teal-700" /></div></div><div className="grid grid-cols-2 gap-4"><div className="rounded-2xl bg-amber-50 p-5"><span className="text-2xl">☀️</span><p className="mt-3 text-sm text-slate-500">Woke up</p><p className="mt-1 font-semibold">7:10 am</p></div><div className="rounded-2xl bg-indigo-50 p-5"><span className="text-2xl">🌙</span><p className="mt-3 text-sm text-slate-500">Bedtime goal</p><p className="mt-1 font-semibold">10:30 pm</p></div></div><div className="flex items-center gap-3 rounded-2xl border border-slate-100 p-4"><span className="flex size-10 items-center justify-center rounded-full bg-teal-50 text-lg">✦</span><p className="text-sm text-slate-600">Progress isn’t always loud. Sometimes it’s simply showing up.</p></div></div></div></div>
+      </section>
+      <section className="page-width grid gap-4 border-t border-slate-200 py-12 sm:grid-cols-3"><div><span className="text-2xl">🧘</span><h2 className="mt-3 font-semibold">Mindful moments</h2><p className="mt-1 text-sm leading-6 text-slate-500">Notice your meditation and quiet time.</p></div><div><span className="text-2xl">🌤️</span><h2 className="mt-3 font-semibold">Healthy rhythms</h2><p className="mt-1 text-sm leading-6 text-slate-500">Keep a gentle record of sleep and wake times.</p></div><div><span className="text-2xl">🌱</span><h2 className="mt-3 font-semibold">Everyday growth</h2><p className="mt-1 text-sm leading-6 text-slate-500">Reflect on tasks, hydration, and what went well.</p></div></section>
+      <footer className="page-width flex flex-wrap items-center justify-between gap-4 border-t border-slate-200 py-7 text-sm text-slate-500"><span>DAYMARK · Make space for what matters.</span><nav className="flex gap-5"><Link href="/api-docs" className="hover:text-teal-800">API docs</Link><Link href="/qr-gen" className="hover:text-teal-800">QR generator</Link><Link href="/memory-game" className="hover:text-teal-800">Memory game</Link></nav></footer>
+    </main>
+  );
 }
