@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "MiscellaneousJobs",
-  description: "This application is to test miscellaneous small jobs",
+  title: "Daymark — Daily habits and reflection",
+  description: "A private daily space for routines, reflections, and small wins.",
 };
 
 export default function RootLayout({

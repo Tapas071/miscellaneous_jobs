@@ -1,0 +1,92 @@
+### Daymark REST Client checks
+### Set baseUrl to the URL printed by `npm run dev` (3000 or 3001).
+### Use a unique testEmail for sign-up; change it before another new-account run.
+### This file creates a persistent test account in your Neon database.
+@baseUrl = http://localhost:3000
+@testEmail = replace-with-unique-test-address@example.invalid
+@testPassword = Replace-With-A-Temporary-Password-9482!
+
+### OpenAPI schema used by /api-docs Swagger UI
+GET {{baseUrl}}/api/auth/open-api/generate-schema
+Accept: application/json
+
+### Signed-out session (200 with null)
+GET {{baseUrl}}/api/auth/get-session
+Accept: application/json
+
+### Sign up (expects a new, unused testEmail; saves a user in the database)
+POST {{baseUrl}}/api/auth/sign-up/email
+Origin: {{baseUrl}}
+Content-Type: application/json
+
+{
+  "name": "REST API Check",
+  "email": "{{testEmail}}",
+  "password": "{{testPassword}}"
+}
+
+### Sign in using the same account (REST Client keeps the session cookie)
+POST {{baseUrl}}/api/auth/sign-in/email
+Origin: {{baseUrl}}
+Content-Type: application/json
+
+{
+  "email": "{{testEmail}}",
+  "password": "{{testPassword}}"
+}
+
+### Authenticated session (run after sign-up or sign-in)
+GET {{baseUrl}}/api/auth/get-session
+Accept: application/json
+
+### Sign out (clears the session cookie)
+POST {{baseUrl}}/api/auth/sign-out
+Origin: {{baseUrl}}
+Content-Type: application/json
+
+{}
+
+### Confirm signed-out session (200 with null)
+GET {{baseUrl}}/api/auth/get-session
+Accept: application/json
+
+### Protected page (signed-out; should return a redirect to /sign-in)
+# @no-redirect
+GET {{baseUrl}}/dashboard
+
+### Complete Better Auth HTTP API inventory (generated OpenAPI operations)
+### All are mounted under /api/auth by src/app/api/auth/[...all]/route.ts.
+### POST /api/auth/sign-in/social
+### GET /api/auth/callback/{id}
+### POST /api/auth/callback/{id}
+### GET /api/auth/get-session
+### POST /api/auth/get-session (OpenAPI-listed; returns 405 unless deferSessionRefresh is enabled)
+### POST /api/auth/sign-out
+### POST /api/auth/sign-up/email
+### POST /api/auth/sign-in/email
+### POST /api/auth/reset-password
+### POST /api/auth/verify-password
+### GET /api/auth/verify-email
+### POST /api/auth/send-verification-email
+### POST /api/auth/change-email
+### POST /api/auth/change-password
+### POST /api/auth/update-session
+### POST /api/auth/update-user
+### POST /api/auth/delete-user
+### POST /api/auth/request-password-reset
+### GET /api/auth/reset-password/{token}
+### GET /api/auth/list-sessions
+### POST /api/auth/revoke-session
+### POST /api/auth/revoke-sessions
+### POST /api/auth/revoke-other-sessions
+### POST /api/auth/link-social
+### GET /api/auth/list-accounts
+### GET /api/auth/delete-user/callback
+### POST /api/auth/unlink-account
+### POST /api/auth/refresh-token
+### POST /api/auth/get-access-token
+### GET /api/auth/account-info
+### GET /api/auth/ok
+### GET /api/auth/error
+
+### Daily tracking currently uses authenticated Next.js Server Actions, not REST endpoints.
